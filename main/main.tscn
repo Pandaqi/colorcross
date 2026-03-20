@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://b82dmkldhwbtm"]
+
+[ext_resource type="Script" uid="uid://csny0q26r4jr1" path="res://main/main.gd" id="1_53q0u"]
+[ext_resource type="Script" uid="uid://bwm252ajjxnbk" path="res://map/puzzle_visualizer.gd" id="2_pjrb6"]
+[ext_resource type="PackedScene" uid="uid://htucohhk3tcd" path="res://map/cells/cell.tscn" id="3_xwkvk"]
+[ext_resource type="Script" uid="uid://dwp0u812vva2t" path="res://map/color-list/color_list.gd" id="4_c651c"]
+
+[node name="Main" type="Node2D" unique_id=526913549 node_paths=PackedStringArray("vis")]
+script = ExtResource("1_53q0u")
+vis = NodePath("PuzzleVisualizer")
+
+[node name="PuzzleVisualizer" type="Node2D" parent="." unique_id=1063314373 node_paths=PackedStringArray("color_list")]
+position = Vector2(276, 189)
+script = ExtResource("2_pjrb6")
+color_list = NodePath("ColorList")
+cell_scene = ExtResource("3_xwkvk")
+
+[node name="ColorList" type="Node2D" parent="PuzzleVisualizer" unique_id=1182323517]
+position = Vector2(0, -140)
+script = ExtResource("4_c651c")

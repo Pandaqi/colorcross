@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://htucohhk3tcd"]
+
+[ext_resource type="Script" uid="uid://docn2iw4342eu" path="res://map/cells/cell.gd" id="1_1hg4s"]
+[ext_resource type="Texture2D" uid="uid://urjt21w4xst0" path="res://map/cells/color-crate.png" id="2_glfqj"]
+[ext_resource type="PackedScene" uid="uid://12ped22afmld" path="res://map/collectibles/collectible.tscn" id="2_n6jdi"]
+[ext_resource type="Texture2D" uid="uid://t1534nsxgdgx" path="res://map/cells/color-crate-overlay.png" id="3_n6jdi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2i8fk"]
+size = Vector2(128, 128)
+
+[node name="Cell" type="Node2D" unique_id=438977335 node_paths=PackedStringArray("sprite", "area")]
+script = ExtResource("1_1hg4s")
+sprite = NodePath("Color")
+area = NodePath("Area2D")
+collectible_scene = ExtResource("2_n6jdi")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1010625347]
+texture = ExtResource("2_glfqj")
+
+[node name="Color" type="Sprite2D" parent="." unique_id=1026707837]
+texture = ExtResource("3_n6jdi")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1055888210]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1920137668]
+shape = SubResource("RectangleShape2D_2i8fk")
