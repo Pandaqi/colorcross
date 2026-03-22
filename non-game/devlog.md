@@ -158,16 +158,3 @@ The only "downside" is that this algorithm does not guarantee uniqueness. There 
 Until the next devlog,
 
 Pandaqi
-
-
-
-
-## To-Do
-
-* Generation sanity checks
-  * Ensure minimum number of collectibles placed -> if last move, try to reach that minimum if at all possible, otherwise just discard and retry
-* Make seeded => menu buttons, difficulty, retry
-  * On higher difficulties, might give up the constraint of only using primary colors
-* Add animations/tweens to changes
-* Add a little "helper" tool -> show the color wheel + when you hover over something, it hints what the MIXTURE will be (of that cell's current color and the placement color)
-  * That's enough, because we also have undo

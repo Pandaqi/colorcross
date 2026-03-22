@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PuzzleSettingCheckbox" format=3 uid="uid://c6fkk7g5a65wb"]
+
+[ext_resource type="Script" uid="uid://dhfd6mahjlglv" path="res://puzzle-framework/settings/setting_checkbox.gd" id="1_6vuo5"]
+
+[resource]
+script = ExtResource("1_6vuo5")
+key = "show_helpers"
+label = "Show Color (Wheel) Helpers"
+default = true
+metadata/_custom_type_script = "uid://dhfd6mahjlglv"

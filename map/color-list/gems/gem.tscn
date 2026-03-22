@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://b4qn6mj3ff4yh"]
+
+[ext_resource type="Script" uid="uid://nbrb2jegp21d" path="res://map/color-list/gems/gem.gd" id="1_iilqd"]
+[ext_resource type="Texture2D" uid="uid://bhunc2dv1gx7t" path="res://map/color-list/gem-tintable@4x.png" id="2_iilqd"]
+[ext_resource type="Shader" uid="uid://ckp2ydw6abdqw" path="res://map/color-list/gems/gem.gdshader" id="3_6ijnn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qmc4m"]
+shader = ExtResource("3_6ijnn")
+shader_parameter/Line_Smoothness = 0.045
+shader_parameter/Line_Width = 0.09
+shader_parameter/Brightness = 3.0
+shader_parameter/Rotation_deg = 30.0
+shader_parameter/Distortion = 1.8
+shader_parameter/Speed = 0.4
+shader_parameter/Position = 0.0
+shader_parameter/Position_Min = 0.25
+shader_parameter/Position_Max = 0.5
+shader_parameter/Alpha = 1.0
+
+[node name="Gem" type="Node2D" unique_id=414947990 node_paths=PackedStringArray("sprite", "shine")]
+script = ExtResource("1_iilqd")
+sprite = NodePath("Sprite2D")
+shine = NodePath("Shine")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1338062075]
+texture = ExtResource("2_iilqd")
+
+[node name="Shine" type="Sprite2D" parent="." unique_id=1477760601]
+modulate = Color(1, 1, 1, 0.6117647)
+material = SubResource("ShaderMaterial_qmc4m")
+texture = ExtResource("2_iilqd")

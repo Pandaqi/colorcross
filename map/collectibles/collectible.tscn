@@ -1,13 +1,30 @@
 [gd_scene format=3 uid="uid://12ped22afmld"]
 
 [ext_resource type="Script" uid="uid://06jpvofs603x" path="res://map/collectibles/collectible.gd" id="1_kyqja"]
-[ext_resource type="Texture2D" uid="uid://t1534nsxgdgx" path="res://map/cells/color-crate-overlay.png" id="2_lnx1r"]
+[ext_resource type="Texture2D" uid="uid://c81487oqyaxwy" path="res://map/collectibles/treasure-base@4x.png" id="2_cmlxf"]
+[ext_resource type="Texture2D" uid="uid://dbl1xuan7n3h5" path="res://puzzle-framework/gameover/circle-particle.png" id="2_jcy2v"]
+[ext_resource type="Texture2D" uid="uid://b3slte3mspqsl" path="res://map/collectibles/treasure-overlay@4x.png" id="3_jcy2v"]
+[ext_resource type="AudioStream" uid="uid://c22atrntt5mds" path="res://puzzle-framework/game/sfx/positive_1.ogg" id="4_cmlxf"]
 
-[node name="Collectible" type="Node2D" unique_id=1573437875 node_paths=PackedStringArray("sprite")]
+[node name="Collectible" type="Node2D" unique_id=1573437875 node_paths=PackedStringArray("overlay", "audio_collected")]
 script = ExtResource("1_kyqja")
-sprite = NodePath("Sprite2D")
+overlay = NodePath("Overlay")
+audio_collected = NodePath("AudioCollected")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=985936900]
-modulate = Color(0.48928297, 0.25257248, 4.813075e-08, 1)
+[node name="Shadow" type="Sprite2D" parent="." unique_id=146255246]
+modulate = Color(0, 0, 0, 0.043137256)
+position = Vector2(0, 33)
+scale = Vector2(1, 0.3046875)
+texture = ExtResource("2_jcy2v")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=985936900]
 scale = Vector2(0.375, 0.375)
-texture = ExtResource("2_lnx1r")
+texture = ExtResource("2_cmlxf")
+
+[node name="Overlay" type="Sprite2D" parent="." unique_id=1340993389]
+scale = Vector2(0.375, 0.375)
+texture = ExtResource("3_jcy2v")
+
+[node name="AudioCollected" type="AudioStreamPlayer2D" parent="." unique_id=991030566]
+stream = ExtResource("4_cmlxf")
+volume_db = -6.0

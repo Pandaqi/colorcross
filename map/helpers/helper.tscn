@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://6sj60lx87ebw"]
+
+[ext_resource type="Script" uid="uid://bmmpb5u6d6yit" path="res://map/helpers/helper.gd" id="1_7bkg5"]
+[ext_resource type="Texture2D" uid="uid://da4q6lke301r8" path="res://map/cells/grid-cell-base@4x.png" id="2_h2883"]
+[ext_resource type="Texture2D" uid="uid://dowhjwlmiwk2y" path="res://map/cells/grid-cell-overlay@4x.png" id="3_y2l0u"]
+[ext_resource type="Texture2D" uid="uid://ng2cykn8v480" path="res://map/helpers/color-wheel@4x.png" id="4_d8lfy"]
+
+[node name="Helper" type="Node2D" unique_id=539024508 node_paths=PackedStringArray("overlay", "color_wheel")]
+scale = Vector2(0.25, 0.25)
+script = ExtResource("1_7bkg5")
+overlay = NodePath("Overlay")
+color_wheel = NodePath("ColorWheel")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1110327470]
+texture = ExtResource("2_h2883")
+
+[node name="Overlay" type="Sprite2D" parent="." unique_id=1278386871]
+texture = ExtResource("3_y2l0u")
+
+[node name="ColorWheel" type="Sprite2D" parent="." unique_id=1499896902]
+scale = Vector2(0.66, 0.66)
+texture = ExtResource("4_d8lfy")

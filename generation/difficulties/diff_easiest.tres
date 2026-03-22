@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PuzzleDifficulty" format=3 uid="uid://d2kaf4paln4i0"]
+
+[ext_resource type="Script" path="res://puzzle-framework/puzzle_difficulty.gd" id="1_13r8w"]
+
+[resource]
+script = ExtResource("1_13r8w")
+properties = Dictionary[String, Variant]({
+"allow_mixing": false,
+"max_collectibles_per_cell": 1,
+"max_collections_single_move": 2,
+"num_collectibles_bounds": Vector2i(2, 4),
+"num_moves_bounds": Vector2i(1, 3),
+"puzzle_size": Vector2i(3, 3)
+})

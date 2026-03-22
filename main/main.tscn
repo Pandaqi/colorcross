@@ -1,20 +1,77 @@
 [gd_scene format=3 uid="uid://b82dmkldhwbtm"]
 
 [ext_resource type="Script" uid="uid://csny0q26r4jr1" path="res://main/main.gd" id="1_53q0u"]
+[ext_resource type="Material" uid="uid://ba0au0k2poeau" path="res://puzzle-framework/menu/menu_shader_material_blobs.tres" id="2_4dugh"]
+[ext_resource type="Script" uid="uid://haho73xq30yv" path="res://puzzle-framework/tools/camera.gd" id="2_kfbq2"]
 [ext_resource type="Script" uid="uid://bwm252ajjxnbk" path="res://map/puzzle_visualizer.gd" id="2_pjrb6"]
 [ext_resource type="PackedScene" uid="uid://htucohhk3tcd" path="res://map/cells/cell.tscn" id="3_xwkvk"]
 [ext_resource type="Script" uid="uid://dwp0u812vva2t" path="res://map/color-list/color_list.gd" id="4_c651c"]
+[ext_resource type="PackedScene" uid="uid://b4qn6mj3ff4yh" path="res://map/color-list/gems/gem.tscn" id="5_3wy1v"]
+[ext_resource type="Script" uid="uid://ba5swhem27a2p" path="res://map/helpers/tutorial.gd" id="6_0i4oc"]
+[ext_resource type="PackedScene" uid="uid://ddww3rpatsax8" path="res://puzzle-framework/tutorial/click-tap-indicator.tscn" id="7_bsumw"]
+[ext_resource type="PackedScene" uid="uid://q1jom8bphw8d" path="res://puzzle-framework/gameover/game_over_dialog.tscn" id="8_67ri8"]
+[ext_resource type="PackedScene" uid="uid://6sj60lx87ebw" path="res://map/helpers/helper.tscn" id="8_fwcvl"]
+[ext_resource type="PackedScene" uid="uid://2xygcypttdo7" path="res://puzzle-framework/game/game_menu.tscn" id="9_grrlh"]
 
 [node name="Main" type="Node2D" unique_id=526913549 node_paths=PackedStringArray("vis")]
 script = ExtResource("1_53q0u")
 vis = NodePath("PuzzleVisualizer")
 
-[node name="PuzzleVisualizer" type="Node2D" parent="." unique_id=1063314373 node_paths=PackedStringArray("color_list")]
-position = Vector2(276, 189)
-script = ExtResource("2_pjrb6")
-color_list = NodePath("ColorList")
-cell_scene = ExtResource("3_xwkvk")
+[node name="Background" type="CanvasLayer" parent="." unique_id=1355945687]
+layer = -1
 
-[node name="ColorList" type="Node2D" parent="PuzzleVisualizer" unique_id=1182323517]
-position = Vector2(0, -140)
+[node name="Background" type="ColorRect" parent="Background" unique_id=1581128372]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.41034126, 0.26853976, 0.16847235, 1)
+
+[node name="Pattern" type="ColorRect" parent="Background" unique_id=1478082206]
+material = ExtResource("2_4dugh")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PuzzleCamera" type="Camera2D" parent="." unique_id=397876216]
+script = ExtResource("2_kfbq2")
+edge_margin = Vector2(32, 64)
+metadata/_custom_type_script = "uid://haho73xq30yv"
+
+[node name="PuzzleVisualizer" type="Node2D" parent="." unique_id=1063314373 node_paths=PackedStringArray("camera", "color_list", "game_menu", "tutorial")]
+script = ExtResource("2_pjrb6")
+camera = NodePath("../PuzzleCamera")
+color_list = NodePath("../ColorList/ColorList")
+game_menu = NodePath("../GameMenu")
+cell_scene = ExtResource("3_xwkvk")
+tutorial = NodePath("../Tutorial")
+
+[node name="Tutorial" type="Node2D" parent="." unique_id=1938231123 node_paths=PackedStringArray("indicator", "helper")]
+script = ExtResource("6_0i4oc")
+indicator = NodePath("Indicator")
+helper = NodePath("Helper")
+
+[node name="Indicator" parent="Tutorial" unique_id=1691144296 instance=ExtResource("7_bsumw")]
+
+[node name="Helper" parent="Tutorial" unique_id=539024508 instance=ExtResource("8_fwcvl")]
+
+[node name="ColorList" type="CanvasLayer" parent="." unique_id=964854352]
+layer = 2
+
+[node name="ColorList" type="Node2D" parent="ColorList" unique_id=1182323517 node_paths=PackedStringArray("audio_narration")]
+position = Vector2(0, 45)
 script = ExtResource("4_c651c")
+gem_scene = ExtResource("5_3wy1v")
+audio_narration = NodePath("AudioNarration")
+
+[node name="AudioNarration" type="AudioStreamPlayer" parent="ColorList/ColorList" unique_id=1094856973]
+
+[node name="GameOverDialog" parent="." unique_id=1270097331 instance=ExtResource("8_67ri8")]
+
+[node name="GameMenu" parent="." unique_id=950523672 instance=ExtResource("9_grrlh")]
+allow_undo = true

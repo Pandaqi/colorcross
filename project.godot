@@ -11,9 +11,24 @@ config_version=5
 [application]
 
 config/name="colorcross"
-run/main_scene="uid://b82dmkldhwbtm"
+run/main_scene="uid://ioo441cokhft"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://bnkvrq5htp7bj"
+
+[autoload]
+
+PuzzleFramework="*uid://bqhtxrn1r54m3"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[gui]
+
+theme/custom="uid://d0wlrrkq7diyd"
 
 [physics]
 
@@ -24,3 +39,4 @@ config/icon="res://icon.svg"
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

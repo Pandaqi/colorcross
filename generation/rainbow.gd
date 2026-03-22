@@ -25,6 +25,18 @@ static var color_names_to_indices : Dictionary[ColorName, int] = {
 	ColorName.PINK: 7
 }
 
+static var color_names_to_audio : Dictionary[ColorName, String] = {
+	ColorName.NONE: "",
+	ColorName.RED: "red",
+	ColorName.ORANGE: "orange",
+	ColorName.YELLOW: "yellow",
+	ColorName.GREEN: "green",
+	ColorName.CYAN: "cyan",
+	ColorName.BLUE: "blue",
+	ColorName.PURPLE: "purple",
+	ColorName.PINK: "pink"
+}
+
 static var color_names_to_colors : Dictionary[ColorName, Color] = {
 	ColorName.NONE: Color.WHITE,
 	ColorName.RED: Color.RED,
@@ -56,6 +68,9 @@ static func get_random_color() -> ColorName:
 
 static func convert_color_to_object(c:ColorName) -> Color:
 	return color_names_to_colors[c]
+
+static func convert_color_to_audio(c:ColorName) -> String:
+	return color_names_to_audio[c]
 
 static func mix_colors_in_sequence(colors:Array[ColorName]) -> ColorName:
 	var current_color := ColorName.NONE

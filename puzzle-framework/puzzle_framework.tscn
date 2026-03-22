@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bqhtxrn1r54m3"]
+
+[ext_resource type="Script" uid="uid://kme3xvun4gc4" path="res://puzzle-framework/puzzle_framework.gd" id="1_57jsw"]
+[ext_resource type="Resource" uid="uid://d2kaf4paln4i0" path="res://generation/difficulties/diff_easiest.tres" id="2_swsbt"]
+[ext_resource type="Script" path="res://puzzle-framework/puzzle_difficulty.gd" id="3_tgv6f"]
+[ext_resource type="Resource" uid="uid://duaens38rthig" path="res://generation/difficulties/diff_easy.tres" id="3_xffpj"]
+[ext_resource type="Resource" uid="uid://bfaxj625nfr50" path="res://generation/difficulties/diff_medium.tres" id="4_tgv6f"]
+[ext_resource type="Resource" uid="uid://cxuhmqfeu8j0v" path="res://generation/difficulties/diff_hard.tres" id="5_qky6c"]
+[ext_resource type="Resource" uid="uid://c6cuvbko3ofgj" path="res://generation/difficulties/diff_hardest.tres" id="6_dny6r"]
+[ext_resource type="Script" uid="uid://xoy87uum5v5s" path="res://puzzle-framework/settings/setting.gd" id="9_tgv6f"]
+[ext_resource type="Resource" uid="uid://7c445g07qa8j" path="res://generation/settings/setting_narrate_colors.tres" id="10_dny6r"]
+[ext_resource type="Resource" uid="uid://c73mtja0x8ce0" path="res://puzzle-framework/settings/common/setting_tutorial.tres" id="10_stkeo"]
+[ext_resource type="Resource" uid="uid://b5h75jjc8yjpn" path="res://puzzle-framework/settings/common/setting_fullscreen.tres" id="11_dny6r"]
+[ext_resource type="Resource" uid="uid://c6fkk7g5a65wb" path="res://generation/settings/setting_show_helpers.tres" id="11_stkeo"]
+[ext_resource type="Resource" uid="uid://doyw0pbgpwr17" path="res://puzzle-framework/settings/common/setting_volume_game.tres" id="13_2jvrg"]
+[ext_resource type="Resource" uid="uid://bpx3va84mb70o" path="res://puzzle-framework/settings/common/setting_volume_ui.tres" id="14_n02j5"]
+
+[node name="PuzzleFramework" type="Node" unique_id=835186744]
+script = ExtResource("1_57jsw")
+game_name = "Colorcross"
+game_version = "1.4.7"
+game_tagline = "Teaches Colors & Directions"
+menu_pattern_enabled = true
+difficulties = Array[ExtResource("3_tgv6f")]([ExtResource("2_swsbt"), ExtResource("3_xffpj"), ExtResource("4_tgv6f"), ExtResource("5_qky6c"), ExtResource("6_dny6r")])
+settings = Array[ExtResource("9_tgv6f")]([ExtResource("11_dny6r"), ExtResource("10_stkeo"), ExtResource("10_dny6r"), ExtResource("11_stkeo"), ExtResource("13_2jvrg"), ExtResource("14_n02j5")])
