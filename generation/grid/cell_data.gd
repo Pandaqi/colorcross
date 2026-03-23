@@ -57,3 +57,6 @@ func get_color_as_object() -> Color:
 
 func clear_colors() -> void:
 	colors = []
+
+func hash_state() -> String:
+	return str(get_color()) + "".join(collectibles.filter(func(c:CollectibleData): return c.color))

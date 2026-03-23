@@ -28,10 +28,15 @@ var solution : Array[CommandTurn]
 
 func generate() -> void:
 	PuzzleFramework.apply_difficulty_settings(self)
+	var counter := 0
 	while true:
+		print("PuzzleGenerator | Attempt | " + str(counter))
+		counter += 1
+		
 		create_grid()
 		var is_valid := take_random_turns()
 		if not is_valid: continue
+		
 		is_valid = clean_up()
 		if is_valid: break
 
@@ -93,17 +98,54 @@ func take_random_turns() -> bool:
 	
 	return true
 
-func clean_up() -> bool:
+func count_collectibles() -> int:
 	var num_collectibles := 0
 	for cell in grid.get_cells():
 		num_collectibles += (cell as CellData).count_collectibles()
-	
+	return num_collectibles
+
+func get_all_moves(cur_depth:int) -> Array[PuzzleCommand]:
+	var arr : Array[PuzzleCommand] = []
+	var cur_color := solution[cur_depth].color
+	for cell in grid.get_cells():
+		arr.append(CommandTurn.new(cur_color, cell))
+	return arr
+
+func is_end_state() -> bool:
+	return count_collectibles() <= 0
+
+func get_state_hash() -> String:
+	var final := ""
+	for cell in grid.get_cells():
+		final += cell.hash_state()
+	return final
+
+func clean_up() -> bool:
 	# too few collectibles placed = bad
-	if num_collectibles < num_collectibles_bounds.x: return false
+	if count_collectibles() < num_collectibles_bounds.x: 
+		print("PuzzleGenerator | Invalidated | Placed too few collectibles")
+		return false
 	
 	# remove any data that's for the player to puzzle
+	# open up the cell for dynamic play
 	for cell in grid.get_cells():
 		cell.clear_colors()
 		cell.allow_collecting = true
+	
+	# TOO FUCKING SLOW!!!
+	# brute force search for shorter solutions
+	# this SHOULD return the grid to its original state once done (backtracking)
+	#var sm := PuzzleSearchMoves.new()
+	#sm.commands = Commands.new(self)
+	#sm.commands.play_audio = false
+	#sm.max_depth = solution.size() - 1 # find any solutions that are 1 or more SHORTER
+	#sm.callback_moves = get_all_moves 
+	#sm.callback_success = is_end_state
+	#sm.callback_state_hash = get_state_hash
+	#
+	#var solutions := sm.search()
+	#if solutions.size() > 0:
+		#print("PuzzleGenerator | Invalidated | Found shorter solutions")
+		#return false
 	
 	return true

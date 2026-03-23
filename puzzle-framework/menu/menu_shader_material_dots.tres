@@ -13,7 +13,7 @@ fill_to = Vector2(1, 1)
 [resource]
 shader = ExtResource("1_rypo0")
 shader_parameter/gradient = SubResource("GradientTexture2D_suu3d")
-shader_parameter/circle_color = Color(0.34117648, 0.654902, 1, 1)
+shader_parameter/circle_color = Color(0.7020226, 0.29101115, 0.105146475, 1)
 shader_parameter/circle_multiplier = 10.0
 shader_parameter/speed = 0.4
 shader_parameter/direction = Vector2(1, 1)

@@ -80,10 +80,12 @@ func _on_commands_finished() -> void:
 	refresh_hover()
 
 func refresh_hover() -> void:
-	if cells_hovered.size() < 0: return
+	if cells_hovered.size() <= 0: return
 	_on_cell_hover(cells_hovered.back(), true)
 
 func _on_cell_hover(c:Cell, active:bool) -> void:
+	if not c: return
+	
 	if not active: cells_hovered.erase(c)
 	if active and (not cells_hovered.has(c)): cells_hovered.append(c)
 	
@@ -101,6 +103,7 @@ func check_game_over() -> void:
 			break
 	
 	if collectibles_left and color_list.is_at_end():
+		tutorial.hide_helper()
 		PuzzleFramework.finish_puzzle(false)
 		return
 	
@@ -108,6 +111,7 @@ func check_game_over() -> void:
 	
 	PuzzleFramework.finish_puzzle(true)
 	
+	tutorial.hide_helper()
 	color_list.play_removal_tween()
 	for cell in cells:
 		cell.play_popdown_tween()

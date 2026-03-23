@@ -147,6 +147,54 @@ This makes the puzzles quite obvious sometimes. And once you've collected that o
 
 So I updated the code to allow multiple collectibles per cell. This will not be part of the easy levels, of course, only harder ones.
 
+## These Difficulty Settings Matter A Lot
+
+At first, I mostly scaled the numbers for every difficulty level. Next difficulty? Grid gets an extra row, a few more collectibles are placed, and so forth.
+
+This works fine for the most part. It provides a solid "base level" for a difficulty. But when I played, I noticed a clear issue: 
+
+> The "hardest" difficulty was often EASIER than "medium" or "hard"!
+
+How? Why? It has a bigger grid, more moves to make, more colors, and more collectibles!
+
+At first, I thought I had to improve my generation algorithm. The algorithm I described finds _a_ solution, but not necessarily the most efficient one. This meant that many of the "Hardest" puzzles gave you 8 moves ... while you could also do it in 4. Yes, the 8 moves version would have been "hard", but now you could quite easily see the 4-move version and be bored!
+
+So I wrote a script that tries all moves. (A "recursive backtracker" that simply executes that Command for every cell, checks if we're at a solution, then undoes it.) It was able to find those "shorter solutions" (if they exist). If so, I discard the puzzle and just generate a new one.
+
+There was just one problem. A big one: it was _way too slow_. It took 5--10 seconds to try all these moves and give a definitive answer about whether my solution was the shortest possible one. This was simply unusable.
+
+{{% remark %}}
+That's why, in the future, I want to switch to writing this logic in "Rust". That's a much faster programming language than the default one in my game engine. Logic like this will be 1000x faster. It sounds extreme, but I know this for sure, because I've actually written it before and tested it. But Rust is also a bit harder to understand, so if at all possible, I want to stick to my current language for puzzle games that can work with it.
+{{% /remark %}}
+
+Usually, in such cases, I've learned to actually _solve the problem_ instead of try brute-force band-aid solutions like this.
+
+What's the problem? The harder difficulties are actually easier.
+
+Why? Because the numbers aren't scaling _properly_!
+
+* The grid turns from 4x4 to 5x5. (A 1.56x increase. Or, 9 extra cells.)
+* But the number of moves went from 5--7 to 6--12. (Almost a 2x increase. 5--7 means it's a _range_: at least 5 moves, at most 7.)
+* While the number of collectibles to grab went from 5--7 to 6--9. (A ~1.25x increase.)
+
+This means puzzles had much more space and freedom, while you had fewer things to grab (and thus fewer constraints/meaningful turns), making it easier! 
+
+I changed the numbers to ...
+
+* Scale the grid less: only 4x4 -> 5x4
+* Bring the number of moves _way down_ (beyond 7 or 8 moves, the puzzles don't get more interesting to play, they just get more annoying/repetitive)
+* While bringing the number of collectibles _way up_. Not only do they need to stay in sync with the grid, they need to go up _more_, because _that_ is what actually makes the puzzle harder. (Now you need to collect _more things_ while having less freedom/space/moves.)
+
+Now the harder puzzles were both _actually harder_ and _correct_ (it's rare that you can find a shorter solution). Now I could turn off my excruciatingly slow backtracking algorithm and call the game finished.
+
+The point here is that a puzzle/game idea won't automatically work with any set of numbers. It won't even work by just scaling all numbers _equally_. To actually make it _harder_, for example, one or more numbers likely need to scale _more_ than others. Whenever your puzzle does not seem to be working, look for the actual _cause_ and try to balance those numbers or logical steps, instead of trying a band-aid complicated algorithm that's too slow ;)
+
+{{% remark %}}
+Not-So-Fun-Fact: While making this game, all my illustrations / exported images SOMEHOW became half their size. I'd draw a treasure chest in 256x256 pixels ... and it would end up 128x128 pixels within the game! I was pulling my hair out, completely confused, unable to find the cause. I just exported everything at even BIGGER sizes, which is why this game's files are polluted by files like `treasure-chest@x1.png`, `treasure-chest@x2.png`, `treasure_chest@x4.png`, and so forth.
+
+Only days later, while finishing the next puzzle game, did I discover the cause. For SOME REASON my drawing software had changed the resolution of all projects to `144dpi` instead of the usual `72dpi`. So, everything I drew was considered "double resolution", which means the raw file size when exported was automatically cut in _half_. Ugh. Always happens to me. Anyway, fixed that, won't happen again. I hope.
+{{% /remark %}}
+
 ## Conclusion
 
 This ... is just a really strong puzzle? I was surprised about how hard this is to solve on your first try :p Even with tiny grids and few steps, I found myself undoing quite a bit before I had some Eureka about how to do it. In fact, the puzzle does not really benefit from just making things bigger. A grid size of 3x3, 4x4, 5x5 is all you really need.

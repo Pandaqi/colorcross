@@ -44,7 +44,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0.53019094, 0.95842415, 1)
+color = Color(0.45976233, 0.16563916, 0.07992663, 1)
 
 [node name="Pattern" type="ColorRect" parent="CanvasLayer/Control/Background" unique_id=1919379420]
 material = ExtResource("3_jwtfl")
